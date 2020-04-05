@@ -29,6 +29,7 @@ const App = () => {
       <HashRouter>
       <Link to='/'>home</Link>
        <Link to='/main'>main</Link>
+       <Link to='/welldata'>WellDataScreen</Link>
       <Switch>
         <Route exact path="/" component={HomeScreen}/>
         <Route exact path="/main" component={MainScreen}/>

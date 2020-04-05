@@ -1,59 +1,129 @@
-import React from 'react'
+import React, {useState} from 'react';
+import TextInputGroup from '../../components/TextInputGroup';
 
 const  WellDataScreen = () => {
+  const [state, setState] = useState({
+    porosity: '',
+    permeability: '',
+    viscosity:'',
+    thickness: '',
+    encroachmentAngle:'',
+    externalRadius: '',
+    aquiferRadius: '',
+    dimentionlessRadius: '',
+    totalCompressibility: '',
+    waterInfluxConstant: '',
+    encroachmentConstant: ''
+  });
+
+
+  const onChangeHandler = (e) => setState({ ...state, [e.target.name]:e.target.value});
+
+  const onSubmitHandler = (
+   e,
+   porosity, 
+   permeability, 
+   viscosity, 
+   thickness, 
+   encroachmentAngle, 
+   externalRadius,
+    aquiferRadius, dimentionlessRadius, totalCompressibility, waterInfluxConstant, encroachmentConstant
+  ) => {
+    e.preventDefault();
+     console.log(porosity, permeability, viscosity, thickness, encroachmentAngle, externalRadius, aquiferRadius, dimentionlessRadius, totalCompressibility, waterInfluxConstant, encroachmentConstant)
+  }
+ 
+
+    const { porosity, permeability, viscosity, thickness, encroachmentAngle, externalRadius, aquiferRadius, dimentionlessRadius, totalCompressibility, waterInfluxConstant, encroachmentConstant} = state;
     return (
         <div>
           <h1>Please Provide The following well Data:</h1>  
           <section>
-            <div>
-              <label htmlFor="porosity"><span className="symbol"><var>&phi;</var></span></label>
-              <input type="text"/>
-            </div>
-            <div>
-              <label htmlFor="permeability"><span className="symbol"><var>&kappa;</var></span></label>
-              <input type="text"/>
-            </div>
-            <div>
-              <label htmlFor="viscosity"><span><var>&mu;</var></span></label>
-              <input type="text"/>
-            </div>
-            <div>
-              <label htmlFor="thickness"><span><var>&eta;</var></span></label>
-              <input type="text"/>
-            </div>
-            <div>
-              <label htmlFor="encroachment-angle"><span><var>&theta;</var></span></label>
-              <input type="text"/>
-            </div>
-            <div>
-              <label htmlFor="external-radius"><span><var>r<sub>e</sub></var></span></label>
-              <input type="text"/>
-            </div>
-            <div>
-              <label htmlFor="aquifer-radius"><span><var>r<sub>a</sub></var></span></label>
-              <input type="text"/>
-            </div>
-            <div>
-              <label htmlFor="dimentionless-radius"><span><var>r<sub>eD</sub></var></span></label>
-              <input type="text"/>
-            </div>
-            <div>
-              <label htmlFor="total-compressibility"><span><var>c<sub>tw</sub></var></span></label>
-              <input type="text"/>
-            </div>
-            <hr/>
-            <div>
-              <label htmlFor="water-influx-constant"><span><var>C</var></span></label>
-              <input type="text"/>
-            </div>
-            <div>
-              <label htmlFor="encroachment-constant"><span><var>f</var></span></label>
-              <input type="text"/>
-            </div>
+           <form onSubmit={(e) => onSubmitHandler(e, porosity, permeability, viscosity, thickness, encroachmentAngle, externalRadius, aquiferRadius, dimentionlessRadius, totalCompressibility, waterInfluxConstant, encroachmentConstant)}>
+            <TextInputGroup
+            label="&phi;"
+            name="porosity"
+            placeholder="Porosity"
+            value={porosity}
+            onChange={onChangeHandler}
+            />
+            <TextInputGroup
+            label="&kappa;"
+            name="permeability"
+            placeholder="Permeabilty"
+            value={permeability}
+            onChange={onChangeHandler}
+            />
+            <TextInputGroup
+            label="&mu;"
+            name="viscosity"
+            placeholder="viscosity"
+            value={viscosity}
+            onChange={onChangeHandler}
+            />
+            <TextInputGroup
+            label="H"
+            name="thickness"
+            placeholder="Reservoir thickness"
+            value={thickness}
+            onChange={onChangeHandler}
+            />
+            <TextInputGroup
+            label="&theta;"
+            name="encroachmentAngle"
+            placeholder="Encroachment angle"
+            value={encroachmentAngle}
+            onChange={onChangeHandler}
+            />
+            <TextInputGroup
+            label="r"
+            name="externalRadius"
+            placeholder="external radius"
+            subscript="e"
+            value={externalRadius}
+            onChange={onChangeHandler}
+            />
+            <TextInputGroup
+            label="r"
+            name="aquiferRadius"
+            placeholder="aquifer radius"
+            subscript="a"
+            value={aquiferRadius}
+            onChange={onChangeHandler}
+            />
+            <TextInputGroup
+            label="r"
+            name="dimentionlessRadius"
+            placeholder="dimentionless radius"
+            subscript="eD"
+            value={dimentionlessRadius}
+            onChange={onChangeHandler}
+            />
+            <TextInputGroup
+            label="c"
+            name="totalCompressibility"
+            placeholder="total compressibilty"
+            subscript="tw"
+            value={totalCompressibility}
+            onChange={onChangeHandler}
+            />
+            <TextInputGroup
+            label="C"
+            name="waterInfluxConstant"
+            placeholder="water influx constant"
+            value={waterInfluxConstant}
+            onChange={onChangeHandler}
+            />
+            <TextInputGroup
+            label="f"
+            name="encroachmentConstant"
+            placeholder="encroachment constant"
+            value={encroachmentConstant}
+            onChange={onChangeHandler}
+            />
+            <button type="submit">Proceed</button>
+           </form>
           </section>
-          
-          {/* Parameters Reference */}
-
         </div>
     )
 }

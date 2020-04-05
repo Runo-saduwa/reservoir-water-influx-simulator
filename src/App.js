@@ -1,9 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import axios from 'axios';
+import {HashRouter, Switch, Route, Link} from 'react-router-dom';
 
-function App() {
+
+import MainScreen from './Pages/MainScreen/MainScreen';
+import HomeScreen from './Pages/HomeScreen/HomeScreen';
+import WellDataScreen from './Pages/WellDataScreen/WellDataScreen';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import './App.css';
+
+const App = () => {
 
   axios.get('http://localhost:2020/')
   .then(function (response) {
@@ -18,18 +25,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Runo
-        </a>
+      
+      <HashRouter>
+      <Link to='/'>home</Link>
+       <Link to='/main'>main</Link>
+      <Switch>
+        <Route exact path="/" component={HomeScreen}/>
+        <Route exact path="/main" component={MainScreen}/>
+        <Route exact path="/welldata" component={WellDataScreen}/>
+      </Switch>
+      </HashRouter>
       </header>
     </div>
   );
